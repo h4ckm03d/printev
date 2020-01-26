@@ -28,3 +28,31 @@ GLOBAL OPTIONS:
 COPYRIGHT:
    Lumochift™ © 2020
 ```
+
+
+## Sample run
+
+### Source code example
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    fmt.Println(os.Getenv("TEST_ENV_1"))
+    fmt.Println(os.Getenv("TEST_ENV_2"))
+}
+```
+
+### Output
+
+```bash
+➜   printev -s testdata
+List env variable:
+TEST_ENV_1
+TEST_ENV_2
+```
