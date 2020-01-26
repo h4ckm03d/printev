@@ -38,6 +38,7 @@ type Env struct {
 	verbose     bool
 	writeToFile bool
 	output      string
+	source      string
 }
 
 // Action is a function command executor
@@ -48,6 +49,7 @@ func (e *Env) Action(c *cli.Context) error {
 	}
 	e.verbose = !c.Bool("silent")
 	e.writeToFile = c.Bool("write")
+	e.source = c.String("source")
 
 	e.opEnv()
 	return nil
@@ -56,6 +58,10 @@ func (e *Env) Action(c *cli.Context) error {
 // Flags is a function to return all registered flag
 func (e *Env) Flags() []cli.Flag {
 	return []cli.Flag{
+		cli.StringFlag{
+			Name:  "source, s",
+			Usage: "[Optional] Target source code",
+		},
 		cli.BoolFlag{
 			Name:  "mute, m",
 			Usage: "[Optional] Hide preview and log.",
@@ -65,19 +71,19 @@ func (e *Env) Flags() []cli.Flag {
 			Usage: "[Optional] Write environment variables found.",
 		},
 		cli.StringFlag{
-			Name:  "output-file, o",
+			Name:  "output, o",
 			Usage: "[Optional] Output location of generated env files, by default write to env.sample",
 		},
 	}
 }
 
 func (e *Env) opEnv() {
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-		return
+	source := e.source
+	if source == "" {
+		source, _ = os.Getwd()
 	}
-	envs := env.FindEnv(dir)
+
+	envs := env.FindEnv(source)
 
 	e.showEnv(envs)
 

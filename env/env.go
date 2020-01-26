@@ -43,13 +43,12 @@ func FindEnv(path string) []string {
 			continue
 		}
 		f, _ := os.Open(walker.Path())
-		defer f.Close()
 
 		reader := bufio.NewReader(f)
 		content, _ := ioutil.ReadAll(reader)
 		lang := getLang(ext)
 		envs := GetEnv(content, lang)
-
+		f.Close()
 		if strings.HasPrefix(walker.Stat().Name(), "config.go") {
 			structEnvs := GetEnvStruct(content)
 			records = append(records, structEnvs...)
