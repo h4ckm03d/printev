@@ -3,6 +3,7 @@
 ## Features
 
 - Read env var from go and ruby codes
+- Output served on sorted format
 
 ```bash
 NAME:
