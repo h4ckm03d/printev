@@ -105,6 +105,7 @@ func GetEnv(b []byte, lang Lang) (records []string) {
 	return unique(records)
 }
 
+// GetEnvStruct fetch env from tag struct
 func GetEnvStruct(b []byte) (records []string) {
 	results := goEnvStructRgx.FindAllSubmatch(b, -1)
 	for _, r := range results {
