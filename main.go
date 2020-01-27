@@ -10,13 +10,11 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lumochift/printev/env"
 	"github.com/urfave/cli"
+	"go.lumochift.org/printev/env"
 )
 
-var (
-	Version string
-)
+var version = "1.0.0"
 
 func main() {
 	app := cli.NewApp()
@@ -24,7 +22,7 @@ func main() {
 	app.Description = "Go Env Printer"
 	app.Usage = "Generate env variable from given codes"
 	app.Copyright = "Lumochift™ © 2020"
-	app.Version = Version
+	app.Version = version
 	env := Env{}
 	app.Flags = env.Flags()
 	app.Action = env.Action
@@ -43,10 +41,8 @@ type Env struct {
 
 // Action is a function command executor
 func (e *Env) Action(c *cli.Context) error {
-	output := c.String("output-file")
-	if output == "" {
-		output = "env.sample"
-	}
+
+	e.output = c.String("output-file")
 	e.verbose = !c.Bool("silent")
 	e.writeToFile = c.Bool("write")
 	e.source = c.String("source")
@@ -73,6 +69,7 @@ func (e *Env) Flags() []cli.Flag {
 		cli.StringFlag{
 			Name:  "output, o",
 			Usage: "[Optional] Output location of generated env files, by default write to env.sample",
+			Value: "env.sample",
 		},
 	}
 }

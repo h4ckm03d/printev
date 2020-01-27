@@ -1,5 +1,7 @@
 # printev
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/h4ckm03d/printev)](https://goreportcard.com/report/github.com/h4ckm03d/printev)
+
 ## Features
 
 - Read env var from go and ruby codes
@@ -30,6 +32,11 @@ COPYRIGHT:
    Lumochift™ © 2020
 ```
 
+## How to get
+
+```go
+go get go.lumochift.org/printev
+```
 
 ## Sample run
 
