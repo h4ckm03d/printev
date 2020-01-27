@@ -1,6 +1,6 @@
-# printev
-
 [![Go Report Card](https://goreportcard.com/badge/github.com/h4ckm03d/printev)](https://goreportcard.com/report/github.com/h4ckm03d/printev)
+
+# printev
 
 ## Features
 
@@ -34,7 +34,7 @@ COPYRIGHT:
 
 ## How to get
 
-```go
+```bash
 go get go.lumochift.org/printev
 ```
 
