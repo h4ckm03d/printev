@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/h4ckm03d/printev)](https://goreportcard.com/report/github.com/h4ckm03d/printev)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lumochift/printev)](https://goreportcard.com/report/github.com/lumochift/printev)
 
 # printev
 
@@ -35,7 +35,7 @@ COPYRIGHT:
 ## How to get
 
 ```bash
-go get go.lumochift.org/printev
+go get github.com/lumochift/printev
 ```
 
 ## Sample run

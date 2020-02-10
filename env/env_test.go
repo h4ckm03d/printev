@@ -8,8 +8,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/lumochift/printev/env"
 	"github.com/stretchr/testify/assert"
-	"go.lumochift.org/printev/env"
 )
 
 var sampleCode = `package main

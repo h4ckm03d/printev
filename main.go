@@ -10,8 +10,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/lumochift/printev/env"
 	"github.com/urfave/cli"
-	"go.lumochift.org/printev/env"
 )
 
 var version = "1.0.0"
