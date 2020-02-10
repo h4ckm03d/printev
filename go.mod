@@ -7,5 +7,4 @@ require (
 	github.com/kr/fs v0.1.0
 	github.com/stretchr/testify v1.4.0
 	github.com/urfave/cli v1.22.2
-	go.lumochift.org/printev v0.0.0-20200127100942-e6aabf1515a8
 )
