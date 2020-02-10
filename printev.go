@@ -1,4 +1,5 @@
-package env
+// Package printev provides functionality to get all env usage
+package printev
 
 import (
 	"bufio"

@@ -1,3 +1,6 @@
+[![GoDoc](https://pkg.go.dev/github.com/lumochift/printev?status.svg)](https://pkg.go.dev/github.com/lumochift/printev)
+[![Build Status](https://github.com/lumochift/printev/workflows/Go%20workflow/badge.svg)](https://github.com/lumochift/printev/actions)
+[![Coverage Status](https://badgen.net/codecov/c/github/lumochift/printev)](https://codecov.io/gh/lumochift/printev)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lumochift/printev)](https://goreportcard.com/report/github.com/lumochift/printev)
 
 # printev
@@ -32,10 +35,10 @@ COPYRIGHT:
    Lumochift™ © 2020
 ```
 
-## How to get
+## Usage
 
 ```bash
-go get github.com/lumochift/printev
+go get github.com/lumochift/printev/cli/printev
 ```
 
 ## Sample run
