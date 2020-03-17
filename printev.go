@@ -32,6 +32,11 @@ var (
 // FindEnv from path, currently get env from *.go files
 func FindEnv(path string) []string {
 	records := []string{}
+
+	if path == "" {
+		path, _ = os.Getwd()
+	}
+
 	walker := fs.Walk(path)
 	for walker.Step() {
 		if err := walker.Err(); err != nil {

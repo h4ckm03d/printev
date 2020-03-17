@@ -26,6 +26,7 @@ func main() {
 	env := Env{}
 	app.Flags = env.Flags()
 	app.Action = env.Action
+
 	if err := app.Run(os.Args); err != nil {
 		log.Fatalln(err)
 	}
@@ -41,13 +42,12 @@ type Env struct {
 
 // Action is a function command executor
 func (e *Env) Action(c *cli.Context) error {
-
 	e.output = c.String("output-file")
 	e.verbose = !c.Bool("silent")
 	e.writeToFile = c.Bool("write")
 	e.source = c.String("source")
-
 	e.opEnv()
+
 	return nil
 }
 
@@ -98,6 +98,7 @@ func (e *Env) opEnv() {
 		fmt.Println("error:", err)
 		return
 	}
+
 	fmt.Printf("%s created \n", e.output)
 }
 
@@ -105,6 +106,7 @@ func (e *Env) showEnv(envs []string) {
 	if len(envs) == 0 {
 		return
 	}
+
 	fmt.Println("List env variable:")
 	sort.Strings(envs)
 	fmt.Println(strings.Join(envs, "\n"))
@@ -112,14 +114,19 @@ func (e *Env) showEnv(envs []string) {
 
 func (e *Env) writeEnvFile(envs []string, output string) error {
 	var buff bytes.Buffer
+
 	sort.Strings(envs)
 	buff.WriteString(strings.Join(envs, "=\n") + "=")
+
 	return ioutil.WriteFile(output, buff.Bytes(), 0644)
 }
 
 func (e *Env) confirmOverwrite(path string) bool {
 	reader := bufio.NewReader(os.Stdin)
+
 	fmt.Printf("Are you sure overwrite %s (y/n)?", path)
+
 	confirmation, _ := reader.ReadString('\n')
+
 	return strings.TrimSuffix(strings.ToLower(confirmation), "\n") == "y"
 }

@@ -8,7 +8,7 @@
 ## Features
 
 - Read env var from go and ruby codes
-- Output served on sorted format
+- Output served on the sorted format
 
 ```bash
 NAME:
@@ -38,7 +38,7 @@ COPYRIGHT:
 ## Usage
 
 ```bash
-go get github.com/lumochift/printev/cli/printev
+go get github.com/lumochift/printev/cmd/printev
 ```
 
 ## Sample run
