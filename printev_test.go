@@ -12,19 +12,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var sampleCode = `package main
-
-import (
-	"os"
-	"fmt"
-)
-
-func main() {
-	fmt.Println(os.Getenv("MYSQL_HOST"))
-}
-
-`
-
 func Test_envtEnv(t *testing.T) {
 	tests := []struct {
 		name   string
@@ -51,6 +38,12 @@ func Test_envtEnv(t *testing.T) {
 			lang:   printev.Ruby,
 			result: []string{"PROTOR_SERVICENAME", "PROTOR_HOST"},
 		},
+		{
+			name:   "node test",
+			input:  []byte(`console.log('The value of PORT is:', process.env.PORT);`),
+			lang:   printev.Node,
+			result: []string{"PORT"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -61,16 +54,29 @@ func Test_envtEnv(t *testing.T) {
 }
 
 func TestWalkinenvv(t *testing.T) {
-	targetDir, err := ioutil.TempDir("", "template")
+	targetDir, err := ioutil.TempDir("", "go")
 	if err != nil {
 		t.Fatal("Failed to create tempdir")
 	}
+
 	targetPath := filepath.Join(targetDir, "main.go")
 	f, err := os.Create(targetPath)
 	if err != nil {
 		t.Error("fail create sample service")
 	}
-	_, err = f.Write([]byte(sampleCode))
+
+	_, err = f.Write([]byte(`package main
+
+	import (
+		"os"
+		"fmt"
+	)
+	
+	func main() {
+		fmt.Println(os.Getenv("MYSQL_HOST"))
+	}
+	
+	`))
 	if err != nil {
 		t.Log(err)
 	}

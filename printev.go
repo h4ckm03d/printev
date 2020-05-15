@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -21,12 +22,15 @@ const (
 	Go Lang = iota
 	// Ruby programming language
 	Ruby
+	// Node Lang
+	Node
 )
 
 var (
-	goEnvRgx       = regexp.MustCompile(`os\.Getenv\(\"(.*?)\"\)`)
-	goEnvStructRgx = regexp.MustCompile(`env:\"(.*?)\"`)
-	rubyEnvRgx     = regexp.MustCompile(`ENV\[['”](.*?)['”]\]`)
+	goEnvRgx       = regexp.MustCompile(`os\.Getenv\(\"(.[a-zA-Z_]+)\"\)`)
+	goEnvStructRgx = regexp.MustCompile(`env:\"(.[a-zA-Z_,]+)\"`)
+	rubyEnvRgx     = regexp.MustCompile(`ENV\[['”](.[a-zA-Z_]+)['”]\]`)
+	nodeEnvRgx     = regexp.MustCompile(`process\.env\.(.[a-zA-Z_]+)`)
 )
 
 // FindEnv from path, currently get env from *.go files
@@ -71,6 +75,8 @@ func getLang(ext string) Lang {
 	case ".yaml":
 	case ".rb":
 		return Ruby
+	case ".js":
+		return Node
 	}
 	//fallback go
 	return Go
@@ -97,9 +103,13 @@ func GetEnv(b []byte, lang Lang) (records []string) {
 		results = goEnvRgx.FindAllSubmatch(b, -1)
 	case Ruby:
 		results = rubyEnvRgx.FindAllSubmatch(b, -1)
+	case Node:
+		results = nodeEnvRgx.FindAllSubmatch(b, -1)
 	}
-
 	for _, r := range results {
+		for _, rr := range r {
+			log.Println("----", string(rr))
+		}
 		if len(r) > 1 {
 			records = append(records, string(r[1]))
 		}
