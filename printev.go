@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -107,9 +106,6 @@ func GetEnv(b []byte, lang Lang) (records []string) {
 		results = nodeEnvRgx.FindAllSubmatch(b, -1)
 	}
 	for _, r := range results {
-		for _, rr := range r {
-			log.Println("----", string(rr))
-		}
 		if len(r) > 1 {
 			records = append(records, string(r[1]))
 		}
