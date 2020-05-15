@@ -59,7 +59,7 @@ func TestWalkinenvv(t *testing.T) {
 		t.Fatal("Failed to create tempdir")
 	}
 
-	targetPath := filepath.Join(targetDir, "main.go")
+	targetPath := filepath.Join(targetDir, "config.go")
 	f, err := os.Create(targetPath)
 	if err != nil {
 		t.Error("fail create sample service")
