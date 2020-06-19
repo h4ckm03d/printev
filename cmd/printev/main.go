@@ -14,7 +14,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-var version = "1.0.0"
+var version = "1.0.1"
 
 func main() {
 	app := cli.NewApp()
@@ -42,8 +42,8 @@ type Env struct {
 
 // Action is a function command executor
 func (e *Env) Action(c *cli.Context) error {
-	e.output = c.String("output-file")
-	e.verbose = !c.Bool("silent")
+	e.output = c.String("output")
+	e.verbose = !c.Bool("mute")
 	e.writeToFile = c.Bool("write")
 	e.source = c.String("source")
 	e.opEnv()
@@ -95,11 +95,11 @@ func (e *Env) opEnv() {
 	}
 
 	if err := e.writeEnvFile(envs, e.output); err != nil {
-		fmt.Println("error:", err)
+		e.Println("\033[0;31merror:", err, "\033[0m")
 		return
 	}
 
-	fmt.Printf("%s created \n", e.output)
+	e.Printf("\033[0;32m%s created \033[0m\n", e.output)
 }
 
 func (e *Env) showEnv(envs []string) {
@@ -107,9 +107,9 @@ func (e *Env) showEnv(envs []string) {
 		return
 	}
 
-	fmt.Println("List env variable:")
+	e.Println("List env variable:")
 	sort.Strings(envs)
-	fmt.Println(strings.Join(envs, "\n"))
+	e.Println(strings.Join(envs, "\n"))
 }
 
 func (e *Env) writeEnvFile(envs []string, output string) error {
@@ -124,9 +124,23 @@ func (e *Env) writeEnvFile(envs []string, output string) error {
 func (e *Env) confirmOverwrite(path string) bool {
 	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Printf("Are you sure overwrite %s (y/n)?", path)
+	e.Printf("\033[0;33mAre you sure overwrite %s (y/n)?\033[0m", path)
 
 	confirmation, _ := reader.ReadString('\n')
 
 	return strings.TrimSuffix(strings.ToLower(confirmation), "\n") == "y"
+}
+
+// Println is proxy fmt.Printf with verbosity condition.
+func (e *Env) Printf(format string, a ...interface{}) {
+	if e.verbose {
+		fmt.Printf(format, a...)
+	}
+}
+
+// Println is proxy fmt.Println with verbosity condition.
+func (e *Env) Println(a ...interface{}) {
+	if e.verbose {
+		fmt.Println(a...)
+	}
 }
