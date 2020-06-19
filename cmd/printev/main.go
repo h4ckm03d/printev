@@ -55,21 +55,25 @@ func (e *Env) Action(c *cli.Context) error {
 func (e *Env) Flags() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{
-			Name:  "source, s",
-			Usage: "[Optional] Target source code",
+			Name:    "source",
+			Aliases: []string{"s"},
+			Usage:   "[Optional] Target source code. (default: current dir)",
 		},
 		&cli.BoolFlag{
-			Name:  "mute, m",
-			Usage: "[Optional] Hide preview and log.",
+			Name:    "mute",
+			Aliases: []string{"m"},
+			Usage:   "[Optional] Hide preview and log.",
 		},
 		&cli.BoolFlag{
-			Name:  "write, w",
-			Usage: "[Optional] Write environment variables found.",
+			Name:    "write",
+			Aliases: []string{"w"},
+			Usage:   "[Optional] Write environment variables found.",
 		},
 		&cli.StringFlag{
-			Name:  "output, o",
-			Usage: "[Optional] Output location of generated env files, by default write to printev.sample",
-			Value: "printev.sample",
+			Name:    "output",
+			Aliases: []string{"o"},
+			Usage:   "[Optional] Output location of generated env files, by default write to printev.sample",
+			Value:   "printev.sample",
 		},
 	}
 }

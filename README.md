@@ -17,6 +17,9 @@ NAME:
 USAGE:
    printev [global options] command [command options] [arguments...]
 
+VERSION:
+   1.0.1
+
 DESCRIPTION:
    Go Env Printer
 
@@ -24,21 +27,21 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --source value, -s value  [Optional] Target source code
-   --mute, -m                [Optional] Hide preview and log.
-   --write, -w               [Optional] Write environment variables found.
-   --output value, -o value  [Optional] Output location of generated env files, by default write to env.sample
-   --help, -h                show help
-   --version, -v             print the version
+   --source value, -s value  [Optional] Target source code. (default: current dir)
+   --mute, -m                [Optional] Hide preview and log. (default: false)
+   --write, -w               [Optional] Write environment variables found. (default: false)
+   --output value, -o value  [Optional] Output location of generated env files, by default write to printev.sample (default: "printev.sample")
+   --help, -h                show help (default: false)
+   --version, -v             print the version (default: false)
 
 COPYRIGHT:
    Lumochift™ © 2020
 ```
 
-## Usage
+## Installation
 
 ```bash
-go get -u github.com/lumochift/printev/cmd/printev
+go install github.com/lumochift/printev/cmd/printev
 ```
 
 ## Sample run
