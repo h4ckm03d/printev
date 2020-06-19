@@ -38,7 +38,7 @@ COPYRIGHT:
 ## Usage
 
 ```bash
-go get github.com/lumochift/printev/cmd/printev
+go get -u github.com/lumochift/printev/cmd/printev
 ```
 
 ## Sample run
