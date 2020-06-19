@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/lumochift/printev"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var version = "1.0.1"
@@ -54,19 +54,19 @@ func (e *Env) Action(c *cli.Context) error {
 // Flags is a function to return all registered flag
 func (e *Env) Flags() []cli.Flag {
 	return []cli.Flag{
-		cli.StringFlag{
+		&cli.StringFlag{
 			Name:  "source, s",
 			Usage: "[Optional] Target source code",
 		},
-		cli.BoolFlag{
+		&cli.BoolFlag{
 			Name:  "mute, m",
 			Usage: "[Optional] Hide preview and log.",
 		},
-		cli.BoolFlag{
+		&cli.BoolFlag{
 			Name:  "write, w",
 			Usage: "[Optional] Write environment variables found.",
 		},
-		cli.StringFlag{
+		&cli.StringFlag{
 			Name:  "output, o",
 			Usage: "[Optional] Output location of generated env files, by default write to printev.sample",
 			Value: "printev.sample",
