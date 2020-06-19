@@ -15,7 +15,7 @@ NAME:
    printev - Generate env variable from given codes
 
 USAGE:
-   printev [global options] command [command options] [arguments...]
+   main [global options] command [command options] [arguments...]
 
 VERSION:
    1.0.1
@@ -41,7 +41,7 @@ COPYRIGHT:
 ## Installation
 
 ```bash
-go install github.com/lumochift/printev/cmd/printev
+go get -u github.com/lumochift/printev/cmd/printev
 ```
 
 ## Sample run
