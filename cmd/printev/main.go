@@ -21,7 +21,7 @@ func main() {
 	app.Name = "printev"
 	app.Description = "Go Env Printer"
 	app.Usage = "Generate env variable from given codes"
-	app.Copyright = "Lumochift™ © 2020"
+	app.Copyright = "Moch Lutfi <kapten.lufi@gmail.com>™ © 2020"
 	app.Version = version
 	env := Env{}
 	app.Flags = env.Flags()
